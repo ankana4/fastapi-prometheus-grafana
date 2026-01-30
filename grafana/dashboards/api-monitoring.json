@@ -1,0 +1,37 @@
+{
+  "title": "FastAPI Monitoring Dashboard",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total API Requests",
+      "targets": [
+        {
+          "expr": "sum(api_requests_total)"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Requests Per Endpoint",
+      "targets": [
+        {
+          "expr": "sum by (endpoint) (api_requests_total)"
+        }
+      ],
+      "gridPos": { "x": 6, "y": 0, "w": 18, "h": 8 }
+    },
+    {
+      "type": "timeseries",
+      "title": "API Latency (p95)",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(api_request_latency_seconds_bucket[1m])) by (le, endpoint))"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 8, "w": 24, "h": 8 }
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1
+}

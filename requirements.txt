@@ -2,3 +2,5 @@ fastapi
 uvicorn
 pymongo
 prometheus-client
+python-logging-loki
+pydantic_settings

@@ -6,6 +6,8 @@ services:
     container_name: fastapi_app
     ports:
       - "8000:8000"
+    volumes:
+    - ./logs:/app/logs  
     depends_on:
       - mongodb
     networks:
@@ -46,6 +48,8 @@ services:
     volumes:
       - ./promtail-config.yaml:/etc/promtail/config.yaml
       - ./logs:/var/log/app
+    depends_on:
+      - loki  
     command: -config.file=/etc/promtail/config.yaml
     networks:
       - monitoring

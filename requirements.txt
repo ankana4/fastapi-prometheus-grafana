@@ -4,3 +4,4 @@ pymongo
 prometheus-client
 python-logging-loki
 pydantic_settings
+email_validator

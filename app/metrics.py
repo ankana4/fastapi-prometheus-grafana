@@ -12,6 +12,16 @@ REQUEST_LATENCY = Histogram(
     "Api request latency",
     ["endpoint"]
 )
+USER_CREATED_TOTAL = Counter(
+    "users_created_total",
+    "Total number of users successfully created"
+)
+
+USER_CREATE_FAILED_TOTAL = Counter(
+    "users_create_failed_total",
+    "Total number of failed user creation attempts",
+    ["reason"]
+)
 
 def setup_metrics(app):
     @app.middleware("http")
